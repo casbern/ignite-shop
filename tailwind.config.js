@@ -1,0 +1,27 @@
+module.exports = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        zinc: {
+          900: '#121214',
+          800: '#202024',
+          300: '#c4c4cc',
+          100: '#e1e1e6',
+        },
+        green: {
+          500: '#00875f',
+          300: '#00b37e',
+        },
+      },
+      fontFamily: {
+        roboto: ['Roboto', 'sans-serif'],
+      },
+    },
+  },
+  plugins: [],
+}
