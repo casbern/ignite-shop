@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 
 
 import { useKeenSlider } from 'keen-slider/react'
@@ -29,7 +30,8 @@ export default function Home({products}: HomeProps) {
        {
         products.map( product => {
           return (
-            <a key={product.id} className="keen-slider__slide  group bg-product-gradient rounded-lg  cursor-pointer relative flex items-center justify-center object-cover">
+            <Link href={`/product/${product.id}`} key={product.id}>
+            <a  className="keen-slider__slide  group bg-product-gradient rounded-lg  cursor-pointer relative flex items-center justify-center object-cover">
               <Image src={product.imageUrl} alt="" width={520} height={480}/>
         
               <footer className="absolute bottom-1 left-1 right-1 rounded-md p-8 flex items-center justify-between bg-product-footer translate-y-full opacity-0 transition-all duration-200 ease-in-out group-hover:translate-y-0 group-hover:opacity-100">
@@ -37,6 +39,7 @@ export default function Home({products}: HomeProps) {
                 <span className="text-xl font-bold text-green-300">{product.price}</span>
               </footer>
             </a>
+            </Link>
           )
         })
        }
