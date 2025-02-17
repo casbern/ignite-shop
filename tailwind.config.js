@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        zinc: {
+        gray: {
           900: '#121214',
           800: '#202024',
           300: '#c4c4cc',

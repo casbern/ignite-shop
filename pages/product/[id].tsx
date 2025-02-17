@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next"
 import Image from "next/image"
+import Head from "next/head"
 import React, { useState } from "react"
 import { stripe } from "../../lib/stripe"
 import { useRouter } from "next/router"
@@ -41,6 +42,11 @@ export default function Product({product}: ProductProps) {
     return <p>Loading...</p>
   }
   return(
+    <>
+    <Head>
+      <title>Product | Ignite Shop</title>
+    </Head>
+    
     <div className="grid grid-cols-2 gap-16 max-w-6xl mx-auto">
       <div className="w-full max-w-xl min-h-656 bg-product-gradient rounded-lg p-1 flex items-center justify-center">
         <Image src={product.imageUrl} alt="" width={520} height={480} className="object-cover"/>
@@ -55,6 +61,7 @@ export default function Product({product}: ProductProps) {
         <button onClick={handleBuyProduct} disabled={isCreatingCheckoutSession} className="mt-auto bg-green-500 border-0 text-white rounded-lg p-5 cursor-pointer font-bold text-sm enable:hover:bg-green-300 disabled:opacity-60 disabled:cursor-not-allowed">Comprar agora</button>
       </div>
     </div>
+    </>
   )
 }
 

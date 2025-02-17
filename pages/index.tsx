@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import Head from "next/head"
 
 
 import { useKeenSlider } from 'keen-slider/react'
@@ -26,7 +27,13 @@ export default function Home({products}: HomeProps) {
     }
   })
   return (
-    <div ref={sliderRef} className=" keen-slider flex  w-full max-w-custom-calc ml-auto min-h-656 ">
+    <>
+    <Head>
+        <title>Home | Ignite Shop</title>
+    </Head>
+
+
+    <div ref={sliderRef} className=" keen-slider flex  w-full max-w-custom-calc ml-auto min-h-656 "> 
        {
         products.map( product => {
           return (
@@ -44,6 +51,7 @@ export default function Home({products}: HomeProps) {
         })
        }
     </div>
+    </>
   )
 }
 
