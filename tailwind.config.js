@@ -26,7 +26,7 @@ module.exports = {
         'custom-calc': 'calc(100vw - ((100vw - 1180px) / 2))'
       },
       minHeight: {
-        '656': '656px'
+        '656': '656px',
       },
       backgroundImage: {
         'product-gradient': 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)'
