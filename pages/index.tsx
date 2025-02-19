@@ -2,13 +2,16 @@ import Image from "next/image"
 import Link from "next/link"
 import Head from "next/head"
 
-
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 
 import {stripe} from '../lib/stripe'
 import { GetStaticProps } from "next"
 import Stripe from "stripe"
+
+import { useContext } from "react"
+import { CartContext } from "../context/CartContext"
+import { Handbag } from "@phosphor-icons/react"
 
 interface HomeProps {
   products: {
@@ -19,6 +22,12 @@ interface HomeProps {
   }[]
 }
 
+interface ProductProps {
+  id: string
+  name: string
+  price: string
+}
+
 export default function Home({products}: HomeProps) {
   const [sliderRef] = useKeenSlider({
     slides: {
@@ -26,6 +35,20 @@ export default function Home({products}: HomeProps) {
       spacing: 48,
     }
   })
+
+  const { items, addItem } = useContext(CartContext)
+
+  function handleAddToCart(e: React.MouseEvent<HTMLButtonElement>, product: ProductProps) {
+    e.preventDefault()
+
+    addItem({
+      id: product.id,
+      name: product.name,
+      price:  product.price
+    })
+  }
+
+
   return (
     <>
     <Head>
@@ -41,9 +64,14 @@ export default function Home({products}: HomeProps) {
             <a  className="keen-slider__slide  group bg-product-gradient rounded-lg  cursor-pointer relative flex items-center justify-center object-cover">
               <Image src={product.imageUrl} alt="" width={520} height={480}/>
         
-              <footer className="absolute bottom-1 left-1 right-1 rounded-md p-8 flex items-center justify-between bg-product-footer translate-y-full opacity-0 transition-all duration-200 ease-in-out group-hover:translate-y-0 group-hover:opacity-100">
-                <strong className="text-lg">{product.name}</strong>
-                <span className="text-xl font-bold text-green-300">{product.price}</span>
+              <footer className="absolute bottom-1 left-1 right-1 rounded-md p-8 flex  items-center justify-between bg-product-footer translate-y-full opacity-0 transition-all duration-200 ease-in-out group-hover:translate-y-0 group-hover:opacity-100">
+                <div className="flex flex-col gap-1">
+                  <strong className="text-lg">{product.name}</strong>
+                  <span className="text-xl font-bold text-green-300">{product.price}</span>
+                </div>
+                <button onClick={(e) => handleAddToCart(e, product)} className="cursor-pointer rounded-lg p-3 bg-green-300">
+                  <Handbag size={32} />
+                </button>
               </footer>
             </a>
             </Link>
