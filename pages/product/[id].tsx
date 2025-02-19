@@ -6,6 +6,9 @@ import { stripe } from "../../lib/stripe"
 import { useRouter } from "next/router"
 import Stripe from "stripe"
 import axios from "axios"
+import { useContext } from "react"
+import { CartContext } from "../../context/CartContext"
+
 
 interface ProductProps {
   product: {
@@ -18,26 +21,43 @@ interface ProductProps {
   }
 }
 
+interface Product {
+  id: string
+  name: string
+  price: string
+}
+
 export default function Product({product}: ProductProps) {
   const { isFallback: isLoading } = useRouter()
   const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
-
-  async function handleBuyProduct() {
-    try {
-      setIsCreatingCheckoutSession(true)
-      const response = await axios.post('/api/checkout', {
-        priceId: product.defaultPriceId
-      })
-
-      const { checkoutUrl } = response.data
+  const { items, addItem } = useContext(CartContext)
 
 
-      window.location.href = checkoutUrl
-    } catch(err) {
-      setIsCreatingCheckoutSession(false)
-      alert('Falha ao redirecionar para o checkout')
-    }
+  function handleAddToCart(product: Product) {
+
+    addItem({
+      id: product.id,
+      name: product.name,
+      price:  product.price
+    })
   }
+
+  // async function handleBuyProduct() {
+  //   try {
+  //     setIsCreatingCheckoutSession(true)
+  //     const response = await axios.post('/api/checkout', {
+  //       priceId: product.defaultPriceId
+  //     })
+
+  //     const { checkoutUrl } = response.data
+
+
+  //     window.location.href = checkoutUrl
+  //   } catch(err) {
+  //     setIsCreatingCheckoutSession(false)
+  //     alert('Falha ao redirecionar para o checkout')
+  //   }
+  // }
 
   if(isLoading) {
     return <p>Loading...</p>
@@ -59,7 +79,7 @@ export default function Product({product}: ProductProps) {
 
         <p className="mt-10 text-sm text-gray-300">{product.description}</p>
 
-        <button onClick={handleBuyProduct} disabled={isCreatingCheckoutSession} className="mt-auto bg-green-500 border-0 text-white rounded-lg p-5 cursor-pointer font-bold text-sm enable:hover:bg-green-300 disabled:opacity-60 disabled:cursor-not-allowed">Comprar agora</button>
+        <button onClick={() => handleAddToCart(product)} disabled={isCreatingCheckoutSession} className="mt-auto bg-green-500 border-0 text-white rounded-lg p-5 cursor-pointer font-bold text-sm enable:hover:bg-green-300 disabled:opacity-60 disabled:cursor-not-allowed">Colocar na sacola</button>
       </div>
     </div>
     </>
