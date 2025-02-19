@@ -69,7 +69,7 @@ export default function Home({products}: HomeProps) {
                   <strong className="text-lg">{product.name}</strong>
                   <span className="text-xl font-bold text-green-300">{product.price}</span>
                 </div>
-                <button onClick={(e) => handleAddToCart(e, product)} className="cursor-pointer rounded-lg p-3 bg-green-300">
+                <button onClick={(e) => handleAddToCart(e, product)} className="cursor-pointer rounded-lg p-3 bg-green-500 hover:bg-green-300">
                   <Handbag size={32} />
                 </button>
               </footer>
