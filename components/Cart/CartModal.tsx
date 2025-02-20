@@ -9,7 +9,7 @@ export default function CartModal() {
   if(!isCartOpen) return null
 
   return (
-    <div className="flex flex-col fixed right-0 top-0 h-screen w-[480px] bg-gray-900 p-12">
+    <div className="flex flex-col flex-1 overflow-y-auto fixed right-0 top-0 h-screen w-[480px] bg-gray-900 p-12">
       
       <header className="flex justify-between mb-8">
         <h2 className="text-xl font-bold">Sacola de compras</h2>
@@ -21,7 +21,7 @@ export default function CartModal() {
 
     { items.map( item => {
       return (
-        <div key={item.id} className="flex gap-5 mb-6">
+        <div key={item.id} className="flex  gap-5 mb-6">
           <div className="bg-product-gradient rounded-lg">
             <Image src={item.imageUrl} width={94} height={94} alt=""/>
           </div>
@@ -37,7 +37,7 @@ export default function CartModal() {
       )})
     }
 
-      <footer className="mt-auto">
+      <footer className="mt-auto pt-4">
         <div className="flex justify-between mb-2">
           <span className="text-base">Quantidade</span>
           <span className="text-base">{items.length} items</span>
