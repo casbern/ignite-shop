@@ -26,6 +26,7 @@ interface ProductProps {
   id: string
   name: string
   price: string
+  imageUrl: string
 }
 
 export default function Home({products}: HomeProps) {
@@ -44,7 +45,8 @@ export default function Home({products}: HomeProps) {
     addItem({
       id: product.id,
       name: product.name,
-      price:  product.price
+      price:  product.price,
+      imageUrl: product.imageUrl
     })
   }
 

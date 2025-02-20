@@ -3,7 +3,8 @@ import logo from '../assets/logo.svg'
 import { AppProps } from 'next/app'
 import Image from 'next/image'
 import { CartProvider } from '../context/CartContext'
-import  CartButton  from '../components/CartButton'
+import  CartButton  from '../components/Cart/CartButton'
+import CartModal from '../components/Cart/CartModal'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -16,8 +17,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
             <CartButton />
           </div>
-
             <Component {...pageProps} /> 
+            <CartModal />
         </div>
       </CartProvider>
   )

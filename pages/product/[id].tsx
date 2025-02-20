@@ -25,6 +25,7 @@ interface Product {
   id: string
   name: string
   price: string
+  imageUrl: string
 }
 
 export default function Product({product}: ProductProps) {
@@ -38,7 +39,8 @@ export default function Product({product}: ProductProps) {
     addItem({
       id: product.id,
       name: product.name,
-      price:  product.price
+      price:  product.price,
+      imageUrl: product.imageUrl
     })
   }
 
