@@ -16,7 +16,6 @@ interface SuccessProps {
 }
 
 export default function Success({customerName, products}: SuccessProps) {
-  console.log( products )
 
   const totalQuantity = products.reduce( (total, product) => {
     return total + product.quantity
