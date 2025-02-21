@@ -18,15 +18,17 @@ interface HomeProps {
     id: string
     name: string
     imageUrl: string
-    price: string
+    price: number
+    priceId: string
   }[]
 }
 
 interface ProductProps {
   id: string
   name: string
-  price: string
+  price: number
   imageUrl: string
+  priceId: string
 }
 
 export default function Home({products}: HomeProps) {
@@ -37,7 +39,7 @@ export default function Home({products}: HomeProps) {
     }
   })
 
-  const { items, addItem } = useContext(CartContext)
+  const { addItem } = useContext(CartContext)
 
   function handleAddToCart(e: React.MouseEvent<HTMLButtonElement>, product: ProductProps) {
     e.preventDefault()
@@ -46,7 +48,8 @@ export default function Home({products}: HomeProps) {
       id: product.id,
       name: product.name,
       price:  product.price,
-      imageUrl: product.imageUrl
+      imageUrl: product.imageUrl,
+      priceId: product.priceId
     })
   }
 
@@ -69,7 +72,10 @@ export default function Home({products}: HomeProps) {
               <footer className="absolute bottom-1 left-1 right-1 rounded-md p-8 flex  items-center justify-between bg-product-footer translate-y-full opacity-0 transition-all duration-200 ease-in-out group-hover:translate-y-0 group-hover:opacity-100">
                 <div className="flex flex-col gap-1">
                   <strong className="text-lg">{product.name}</strong>
-                  <span className="text-xl font-bold text-green-300">{product.price}</span>
+                  <span className="text-xl font-bold text-green-300">{new Intl.NumberFormat('pt-BR', {
+                          style: 'currency',
+                          currency: 'BRL',
+                        }).format(product.price / 100)}</span>
                 </div>
                 <button onClick={(e) => handleAddToCart(e, product)} className="cursor-pointer rounded-lg p-3 bg-green-500 hover:bg-green-300">
                   <Handbag size={32} />
@@ -97,10 +103,8 @@ export const getStaticProps: GetStaticProps = async () => {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-      }).format((price.unit_amount ?? 0) / 100)
+      price: price.unit_amount,
+      priceId: price.id
     }
   } )
 

@@ -4,8 +4,10 @@ import { createContext, ReactNode, useState } from "react"
 interface CartItem {
   id: string
   name: string
-  price: string
+  price: number
   imageUrl: string
+  quantity?: number
+  priceId: string
 }
 
 interface CartContextData {
@@ -14,6 +16,7 @@ interface CartContextData {
   addItem: (item: CartItem) => void
   openCart: () => void
   closeCart: () => void
+  removeItem: (id: string) => void
 }
 
 interface CartProviderProps {
@@ -26,10 +29,32 @@ export function CartProvider( {children}: CartProviderProps ) {
 
   const [items, setItems] = useState<CartItem[]>([])
   const [isCartOpen, setIsCartOpen] = useState(false)
-
   
-  function addItem(item: CartItem) {
-    setItems([...items, item])
+  function addItem(product: CartItem) {
+    
+    const itemExists = items.find( item => item.id === product.id)
+
+    if(!itemExists) {
+      return setItems( items => [...items, {...product, quantity: 1}])
+    }
+
+    setItems( items.map( item => {
+      if(item.id === product.id) {
+        return {
+          ...item,
+          quantity: item.quantity! + 1
+        }
+      }
+      return item
+    }))
+  }
+
+  function removeItem(id: string) {
+
+    const filteredItems = items.filter( item => item.id !== id)
+
+    setItems([...filteredItems])
+
   }
 
   function openCart() {
@@ -41,7 +66,7 @@ export function CartProvider( {children}: CartProviderProps ) {
   }
   
   return (
-    <CartContext.Provider value={{ items, addItem, isCartOpen, openCart, closeCart }}>
+    <CartContext.Provider value={{ items, addItem, isCartOpen, openCart, closeCart, removeItem }}>
       {children}
     </CartContext.Provider>
   )
