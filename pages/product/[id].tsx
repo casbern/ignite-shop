@@ -15,7 +15,7 @@ interface ProductProps {
     imageUrl: string
     price: number
     description: string
-    defaultPriceId: string
+    priceId: string
   }
 }
 
@@ -24,6 +24,7 @@ interface Product {
   name: string
   price: number
   imageUrl: string
+  priceId: string
 }
 
 export default function Product({product}: ProductProps) {
@@ -36,7 +37,8 @@ export default function Product({product}: ProductProps) {
       id: product.id,
       name: product.name,
       price:  product.price,
-      imageUrl: product.imageUrl
+      imageUrl: product.imageUrl,
+      priceId: product.priceId
     })
   }
 
@@ -90,7 +92,7 @@ export const getStaticProps: GetStaticProps<any, {id: string}> = async ({params}
         imageUrl: product.images[0],
         price: price.unit_amount,
         description: product.description,
-        defaultPriceId: price.id,
+        priceId: price.id,
       }
     },
     revalidate: 60 * 60 * 1
