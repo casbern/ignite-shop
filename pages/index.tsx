@@ -1,15 +1,15 @@
 import Image from "next/image"
 import Link from "next/link"
 import Head from "next/head"
+import { GetStaticProps } from "next"
 
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 
 import {stripe} from '../lib/stripe'
-import { GetStaticProps } from "next"
 import Stripe from "stripe"
 
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { CartContext } from "../context/CartContext"
 import { Handbag } from "@phosphor-icons/react"
 
@@ -32,6 +32,7 @@ interface ProductProps {
 }
 
 export default function Home({products}: HomeProps) {
+  const [isMobile, setIsMobile] = useState(false)
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 3,
@@ -40,6 +41,20 @@ export default function Home({products}: HomeProps) {
   })
 
   const { addItem } = useContext(CartContext)
+
+  useEffect( () => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+
+    checkScreenSize()
+
+    window.addEventListener('resize', checkScreenSize)
+
+    return () => {
+      window.removeEventListener('resize', checkScreenSize)
+    }
+  }, [])
 
   function handleAddToCart(e: React.MouseEvent<HTMLButtonElement>, product: ProductProps) {
     e.preventDefault()
@@ -60,7 +75,32 @@ export default function Home({products}: HomeProps) {
         <title>Home | Ignite Shop</title>
     </Head>
 
-
+    { isMobile ? (
+      <div className="flex flex-col gap-4 w-full px-4">
+      {products.map(product => (
+        <Link prefetch={false} href={`/product/${product.id}`} key={product.id}>
+          <a className="bg-product-gradient rounded-lg cursor-pointer relative flex flex-col items-center justify-center p-4">
+            <div className="w-full flex justify-center">
+              <Image src={product.imageUrl} alt="" width={240} height={220} objectFit="cover" />
+            </div>
+            
+            <footer className="w-full p-4 flex items-center justify-between bg-product-footer rounded-md mt-2">
+              <div className="flex flex-col gap-1">
+                <strong className="text-lg">{product.name}</strong>
+                <span className="text-xl font-bold text-green-300">{new Intl.NumberFormat('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                }).format(product.price / 100)}</span>
+              </div>
+              <button onClick={(e) => handleAddToCart(e, product)} className="cursor-pointer rounded-lg p-3 bg-green-500 hover:bg-green-300">
+                <Handbag size={24} />
+              </button>
+            </footer>
+          </a>
+        </Link>
+      ))}
+    </div>
+    ) : (
     <div ref={sliderRef} className=" keen-slider flex  w-full max-w-custom-calc ml-auto min-h-656 "> 
        {
         products.map( product => {
@@ -87,6 +127,7 @@ export default function Home({products}: HomeProps) {
         })
        }
     </div>
+    )}
     </>
   )
 }

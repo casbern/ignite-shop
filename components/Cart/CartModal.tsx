@@ -48,7 +48,7 @@ export default function CartModal() {
         animate={{ x: 0 }}
         exit={{ x: "100%" }}
         transition={{ ease: "easeInOut", duration: 0.5 }}
-        className="fixed right-0 top-0 h-screen w-[480px] bg-gray-900 p-12 shadow-lg"
+        className="fixed right-0 top-0 h-screen w-full md:w-[480px] bg-gray-900 p-12 shadow-lg"
       >
 
         <div className="flex flex-col flex-1 overflow-y-auto">
