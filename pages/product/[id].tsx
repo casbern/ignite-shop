@@ -48,12 +48,12 @@ export default function Product({product}: ProductProps) {
       <title>Product | Ignite Shop</title>
     </Head>
     
-    <div className="grid grid-cols-2 gap-16 max-w-6xl mx-auto">
-      <div className="w-full max-w-xl min-h-656 bg-product-gradient rounded-lg p-1 flex items-center justify-center">
-        <Image src={product.imageUrl} alt="" width={520} height={480} className="object-cover"/>
+    <div className="grid  md:grid-cols-2 gap-16 max-w-6xl mx-auto">
+      <div className="w-full max-w-xl  md:min-h-656 bg-product-gradient rounded-lg p-1 flex items-center justify-center">
+        <Image src={product.imageUrl} alt="" width={520} height={420} className="object-cover"/>
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col min-h-[300px]">
         <h1 className="text-2xl text-gray-300">{product.name}</h1>
         <span className="mt-4 block text-2xl text-green-300">{new Intl.NumberFormat('pt-BR', {
                           style: 'currency',

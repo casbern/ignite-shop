@@ -32,14 +32,24 @@ export default function Success({customerName, products}: SuccessProps) {
 
     <main className=" flex flex-col items-center justify-center m-auto min-h-656">
 
-      <div  className="flex flex-row items-center justify-center mb-12">
-      {
-        products.map( product => (
-            <div key={product.id} className=" bg-product-gradient rounded-full p-1 -ml-8 z-10 shadow-2xl">
-              <Image src={product.imageUrl} width={140} height={140} alt="" className="object-cover" />
-            </div>
-        ))
-      }
+      <div  className="flex flex-row items-center justify-center px-8 mb-12 ">
+        <div className="flex relative">
+          {
+            products.map( (product, index) => (
+                <div 
+                  key={product.id} 
+                  className=" bg-product-gradient rounded-full p-1 shadow-2xl" 
+                  style={{ 
+                    marginLeft: index === 0 ? '0' : '-2rem', 
+                    zIndex: index + 1,
+                    position: 'relative'
+                  }}
+                  >
+                  <Image src={product.imageUrl} width={140} height={140} alt="" className="object-cover" />
+                </div>
+            ))
+          }
+        </div>
       </div>
 
           <h1 className="font-bold text-2xl text-gray-100">Compra efetuada!</h1>
