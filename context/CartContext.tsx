@@ -6,7 +6,7 @@ interface CartItem {
   name: string
   price: number
   imageUrl: string
-  quantity?: number
+  quantity: number
   priceId: string
 }
 
@@ -35,7 +35,7 @@ export function CartProvider( {children}: CartProviderProps ) {
     const itemExists = items.find( item => item.id === product.id)
 
     if(!itemExists) {
-      return setItems( items => [...items, {...product, quantity: 1}])
+      return setItems( items => [...items, {...product}])
     }
 
     setItems( items.map( item => {

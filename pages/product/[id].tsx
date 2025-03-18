@@ -38,7 +38,8 @@ export default function Product({product}: ProductProps) {
       name: product.name,
       price:  product.price,
       imageUrl: product.imageUrl,
-      priceId: product.priceId
+      priceId: product.priceId,
+      quantity: 1
     })
   }
 
