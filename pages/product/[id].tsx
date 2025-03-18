@@ -72,12 +72,18 @@ export default function Product({product}: ProductProps) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [],
-    fallback: true,
+    paths: [
+      { params: { id: 'prod_RlW88atUagMj9m' } },
+      { params: { id: 'prod_RlW9JlstnnQM2C' } },
+      { params: { id: 'prod_RlWAbRaxOdOBu7' } },
+      { params: { id: 'prod_RlW7rlryxVJsjX' } }
+    ],
+    fallback: false,
   }
 }
 
 export const getStaticProps: GetStaticProps<any, {id: string}> = async ({params}) => {
+ 
   const productId = params!.id
   const product = await stripe.products.retrieve(productId, {
     expand: ['default_price']
