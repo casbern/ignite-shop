@@ -1,4 +1,3 @@
-//import { Handbag } from "@phosphor-icons/react"
 import { ShoppingBag } from 'lucide-react'
 
 import { useContext } from "react"

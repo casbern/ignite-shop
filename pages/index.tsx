@@ -12,7 +12,6 @@ import Stripe from "stripe"
 
 import { useContext, useEffect, useState } from "react"
 import { CartContext } from "../context/CartContext"
-//import { Handbag } from "@phosphor-icons/react/dist/ssr/Handbag"
 import { ShoppingBag } from 'lucide-react'
 
 

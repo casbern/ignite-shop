@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@phosphor-icons/react": "^2.1.7",
     "axios": "^1.7.9",
     "framer-motion": "4",
     "keen-slider": "6.8.5",
