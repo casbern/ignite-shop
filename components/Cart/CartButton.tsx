@@ -1,4 +1,6 @@
-import { Handbag } from "@phosphor-icons/react"
+//import { Handbag } from "@phosphor-icons/react"
+import { ShoppingBag } from 'lucide-react'
+
 import { useContext } from "react"
 import { CartContext } from "../../context/CartContext"
 
@@ -14,7 +16,7 @@ export default function CartButton() {
         {totalQuantity}
       </div>
       <button onClick={openCart} className="cursor-pointer rounded-lg p-3 bg-gray-800">
-        <Handbag size={24} />
+        <ShoppingBag size={24} />
       </button>
     </div>
   )

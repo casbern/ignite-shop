@@ -1,3 +1,4 @@
+import React from "react"
 import Image from "next/image"
 import Link from "next/link"
 import Head from "next/head"
@@ -11,7 +12,10 @@ import Stripe from "stripe"
 
 import { useContext, useEffect, useState } from "react"
 import { CartContext } from "../context/CartContext"
-import { Handbag } from "@phosphor-icons/react/dist/ssr/Handbag"
+//import { Handbag } from "@phosphor-icons/react/dist/ssr/Handbag"
+import { ShoppingBag } from 'lucide-react'
+
+
 
 interface HomeProps {
   products: {
@@ -94,7 +98,7 @@ export default function Home({products}: HomeProps) {
                 }).format(product.price / 100)}</span>
               </div>
               <button onClick={(e) => handleAddToCart(e, product)} className="cursor-pointer rounded-lg p-3 bg-green-500 hover:bg-green-300">
-                <Handbag size={24} />
+                <ShoppingBag size={24}/>
               </button>
             </footer>
           </a>
@@ -119,7 +123,7 @@ export default function Home({products}: HomeProps) {
                         }).format(product.price / 100)}</span>
                 </div>
                 <button onClick={(e) => handleAddToCart(e, product)} className="cursor-pointer rounded-lg p-3 bg-green-500 hover:bg-green-300">
-                  <Handbag size={32} />
+                  <ShoppingBag size={32} />
                 </button>
               </footer>
             </a>
