@@ -1,4 +1,5 @@
-import { X } from "@phosphor-icons/react"
+import { X } from "lucide-react"
+
 import { useContext, useState } from "react"
 import { CartContext } from "../../context/CartContext"
 import axios from "axios"
