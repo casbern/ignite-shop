@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next"
-import Image from "next/image"
+//import Image from "next/image"
 import Head from "next/head"
 import React, { useState } from "react"
 import { stripe } from "../../lib/stripe"
@@ -51,7 +51,7 @@ export default function Product({product}: ProductProps) {
     
     <div className="grid  md:grid-cols-2 gap-16 max-w-6xl mx-auto">
       <div className="w-full max-w-xl  md:min-h-656 bg-product-gradient rounded-lg p-1 flex items-center justify-center">
-        <Image src={product.imageUrl} alt="" width={520} height={420} className="object-cover"/>
+        <img src={product.imageUrl} alt="" width={520} height={420} className="object-cover"/>
       </div>
 
       <div className="flex flex-col min-h-[300px]">

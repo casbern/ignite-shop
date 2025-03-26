@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { stripe } from "../lib/stripe";
 import Stripe from "stripe";
-import Image from "next/image";
+//import Image from "next/image";
 import Head from "next/head";
 
 interface SuccessProps {
@@ -45,7 +45,7 @@ export default function Success({customerName, products}: SuccessProps) {
                     position: 'relative'
                   }}
                   >
-                  <Image src={product.imageUrl} width={140} height={140} alt="" className="object-cover" />
+                  <img src={product.imageUrl} width={140} height={140} alt="" className="object-cover" />
                 </div>
             ))
           }

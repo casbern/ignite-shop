@@ -1,5 +1,5 @@
 import React from "react"
-import Image from "next/image"
+//import Image from "next/image"
 import Link from "next/link"
 import Head from "next/head"
 import { GetStaticProps } from "next"
@@ -85,7 +85,7 @@ export default function Home({products}: HomeProps) {
         <Link prefetch={false} href={`/product/${product.id}`} key={product.id}>
           <a className="bg-product-gradient rounded-lg cursor-pointer relative flex flex-col items-center justify-center p-4">
             <div className="w-full flex justify-center">
-              <Image src={product.imageUrl} alt="" width={240} height={220} objectFit="cover" />
+              <img src={product.imageUrl} alt="" width={240} height={220}  />
             </div>
             
             <footer className="w-full p-4 flex items-center justify-between bg-product-footer rounded-md mt-2">
@@ -111,7 +111,7 @@ export default function Home({products}: HomeProps) {
           return (
             <Link prefetch={false} href={`/product/${product.id}`} key={product.id}>
             <a  className="keen-slider__slide  group bg-product-gradient rounded-lg  cursor-pointer relative flex items-center justify-center object-cover">
-              <Image src={product.imageUrl} alt="" width={520} height={480}/>
+              <img src={product.imageUrl} alt="" width={520} height={480}/>
         
               <footer className="absolute bottom-1 left-1 right-1 rounded-md p-8 flex  items-center justify-between bg-product-footer translate-y-full opacity-0 transition-all duration-200 ease-in-out group-hover:translate-y-0 group-hover:opacity-100">
                 <div className="flex flex-col gap-1">
