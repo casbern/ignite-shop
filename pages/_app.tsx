@@ -11,7 +11,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <div className='flex flex-col items-start min-h-screen px-4 md:px-0 '>
           <div className='py-8 px-0 w-full max-w-6xl my-0 mx-auto flex justify-between'>
             <a href={'/'} className='cursor-pointer'>
-              <img src="/logo.svg" width={140} height={140} alt="" />
+              <img src="/logo.svg" alt="" />
             </a>
 
             <CartButton />
